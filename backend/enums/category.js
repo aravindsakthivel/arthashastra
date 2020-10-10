@@ -1,0 +1,5 @@
+export const FOOD = "Food"
+export const HEALTH = "Health"
+export const LEISURE = "Leisure"
+export const MISCELLANOUS = "Miscellaneous"
+export const TRANSPORTATION = "Transportation"
