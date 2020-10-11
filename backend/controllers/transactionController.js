@@ -1,0 +1,97 @@
+const { transactAddValidation, 
+        transactDeleteValidation, 
+        transactUpdateValidation,
+        transactGetValidation} = require("../helpers/validations/transactionValidation");
+const {paginatedResults} = require('../helpers/pagination/pagination')
+
+const Transaction = require('../models/Transactions');
+const User = require("../models/Users");
+
+const transactGet = async (req, res) => {
+    const {error} = transactGetValidation(req.body)
+    if(error){
+        console.log(error)
+        return res.status(400).json({error: true, message: error.details[0].message})
+    }
+
+    const filters = {
+        user_id : req.body.user_id
+    }
+    
+    let filter_by_type = req.query.type
+    if(filter_by_type !== undefined){
+        filters.type = filter_by_type.toLowerCase().split('').map((x, i) => i===0 ? x.toUpperCase() : x).join('')
+    }
+
+    let filter_by_category = req.query.category
+    if(filter_by_category !== undefined){
+        filters.category = filter_by_category.toLowerCase().split('').map((x, i) => i===0 ? x.toUpperCase() : x).join('')
+    }
+
+    let results = await paginatedResults(Transaction, req, filters, {timestamp : -1})
+    if(results.error){
+        res.status(400).json({...results})
+    }
+    else{
+        res.json({...results})
+    }
+}
+
+const transactAdd = async (req, res) => {
+    
+    const {error} = transactAddValidation(req.body)
+    if(error){
+        return res.status(400).json({error: true, message: error.details[0].message})
+    }
+
+    const user = await User.findOne({id: req.body.user_id})
+    if(!user){
+        return res.status(400).json({error: true, message: "User does not exist"})
+    }
+
+    const transaction = new Transaction({...req.body})
+
+    try{
+        await transaction.save()
+        res.status(200).json({error: false, message: "Transaction Added."})
+    }
+    catch(err){
+        res.status(400).json({error: true, message: "Transaction was not added.", info: err})
+    }
+}
+
+const transactDelete = async (req, res) => {
+    
+    const {error} = transactDeleteValidation(req.body)
+    if(error){
+        return res.status(400).json({error: true, message: error.details[0].message})
+    }
+
+    try{
+        const transact = await Transaction.deleteOne({id: req.body.id})
+        console.log(transact)
+        res.status(200).json({error: false, message: "Transaction Deleted successfully."})
+    }
+    catch(err){
+        res.status(400).json({error: true, message: "Transaction was not deleted.", info: err})
+    }
+}
+
+const transactUpdate = async (req, res) => {
+    
+    const {error} = transactUpdateValidation(req.body)
+    if(error){
+        return res.status(400).json({error: true, message: error.details[0].message})
+    }
+
+    try{
+        await Transaction.updateOne({id: req.body.id}, {...req.body})
+        res.status(200).json({error: false, message: "Transaction Updated."})
+    }
+    catch(err){
+        res.status(400).json({error: true, message: "Transaction was not updated."})
+    }
+}
+
+
+module.exports = {transactGet, transactAdd, transactUpdate, transactDelete}
