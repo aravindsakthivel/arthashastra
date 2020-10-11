@@ -57,7 +57,17 @@ const loginUser = async (req, res) => {
         res.status(400).json({error: true, message: "Credentials do not match."})
     }
     else{
-        res.status(200).json({error: false, message: "Logged In", person: user.name})
+        res.status(200).json({
+            error: false, 
+            message: "Logged In", 
+            data: {
+                id: user.id,
+                name: user.username,
+                email: user.email,
+                mob: user.mob,
+                gender: user.gender
+            }
+        })
     }
 }
 
