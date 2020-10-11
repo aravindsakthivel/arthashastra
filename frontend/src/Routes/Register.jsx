@@ -6,6 +6,8 @@ import {Redirect} from "react-router-dom";
 import {FormWrapper, Mlabel} from "../Components/StyledComponents"
 import { v4 as uuidv4 } from 'uuid'
 import logo from '../Resources/logo.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChartLine } from '@fortawesome/free-solid-svg-icons'
 
 
 const Register = () => {
@@ -13,7 +15,7 @@ const Register = () => {
         name : "",
         username : "",
         email : "",
-        phoneNumber : "",
+        mob : "",
         gender : "",
         password : "",
     })
@@ -36,7 +38,7 @@ const Register = () => {
             "username" : registerData.username,
             "email" : registerData.email,
             "password" : registerData.password,
-            "phoneNumber" : registerData.phoneNumber,
+            "mob" : registerData.mob,
             "gender" : registerData.gender
         }
         dispatch(registerUserProcess(userInfo))
@@ -48,27 +50,26 @@ const Register = () => {
             <FormWrapper className = "container-fluid max-height bg-light">
                 <div className = "row justify-content-center">
                     <div className = "col-11 col-sm-12 col-md-6 col-lg-4">
-                        <div className = "p-lg-4 p-md-4 mt-3 p-4 mt-lg-4 mt-md-4 border rounded-lg bg-white text-center">
-                            <img className = "rounded-circle w-25 mb-4 text-center" src = {logo} />
+                        <div className = "p-lg-4 p-md-4 mt-3 p-4 mt-lg-4 mt-md-4 border shadow rounded-lg bg-white text-center">
+                            <FontAwesomeIcon icon={faChartLine} size = "5x" style = {{color: "#3F729B"}}/>
                             <form onSubmit={handleSubmit} className = "mb-2">
                                 <div className = "form-group">
-                                    <input type="text" onChange = {handleInput} name = "name" value = {registerData.name} className = "form-control border-right-0 border-top-0 border-left-0 rounded-0"  placeholder = "name" aria-describedby="emailHelp" minlength="4" required />
+                                    <input type="text" onChange = {handleInput} name = "name" value = {registerData.name} className = "form-control border-right-0 border-top-0 border-left-0 rounded-0"  placeholder = "name" aria-describedby="emailHelp" minLength="4" required />
                                 </div>
                                 <div className = "form-group">
-                                    <input type="text" onChange = {handleInput} name = "username" value = {registerData.username} className = "form-control border-right-0 border-top-0 border-left-0 rounded-0"  placeholder = "username" aria-describedby="emailHelp" minlength="4" required />
+                                    <input type="text" onChange = {handleInput} name = "username" value = {registerData.username} className = "form-control border-right-0 border-top-0 border-left-0 rounded-0"  placeholder = "username" aria-describedby="emailHelp" minLength="4" required />
                                 </div>
-                                <div className = "form-row">
-                                    <div className = "form-group col-lg-6 col-md-6">
-                                        <input type="text" onChange = {handleInput} name = "email" value = {registerData.email} className = "form-control border-right-0 border-top-0 border-left-0 rounded-0"  placeholder = "email" aria-describedby="emailHelp" required />
-                                    </div>
-                                    <div className = "form-group col-lg-6 col-md-6">
-                                        <input type="text" onChange = {handleInput} name = "phoneNumber" value = {registerData.phoneNumber} className = "form-control border-right-0 border-top-0 border-left-0 rounded-0"  placeholder = "phone number" aria-describedby="emailHelp" />
-                                    </div>
+                                <div className = "form-group">
+                                    <input type="text" onChange = {handleInput} name = "email" value = {registerData.email} className = "form-control border-right-0 border-top-0 border-left-0 rounded-0"  placeholder = "email" aria-describedby="emailHelp" required />
                                 </div>
-                                <div className = "mb-2 text-left" onChange = {handleInput}> 
+                                <div className = "form-group">
+                                    <input type="text" onChange = {handleInput} name = "mob" value = {registerData.mob} className = "form-control border-right-0 border-top-0 border-left-0 rounded-0"  placeholder = "mobile" aria-describedby="emailHelp" minLength = "10"  maxLength = "16"/>
+                                </div>
+                                <p className = "form-check-label float-left mt-1 mr-3" >gender: </p>
+                                <div className = "mb-1 float-left" onChange = {handleInput} id = "genderBar"> 
                                     <div className = "form-check form-check-inline">
-                                        <input className = "form-check-input" type = "radio" name = "gender" id = "inlineRadio1" value = "male" />
-                                        <Mlabel className = "form-check-label" htmlFor = "inlineRadio1">Male</Mlabel>
+                                        <input className = "form-check-input mt-1" type = "radio" name = "gender" id = "inlineRadio1" value = "male" />
+                                        <Mlabel className = "form-check-label mt-1" htmlFor = "inlineRadio1">Male</Mlabel>
                                     </div>
                                     <div className = "form-check form-check-inline">
                                         <input className = "form-check-input" type = "radio" name = "gender" id = "inlineRadio2" value = "female" />
@@ -79,16 +80,17 @@ const Register = () => {
                                         <Mlabel className = "form-check-label" htmlFor  = "inlineRadio3">Other</Mlabel>
                                     </div>
                                 </div>
+                                
                                 <div className = "form-group">
-                                    <input type="password" onChange = {handleInput} name = "password" value = {registerData.password} className = "form-control border-right-0 border-top-0 border-left-0 rounded-0" placeholder = "password" minlength="6" required />
+                                    <input type="password" onChange = {handleInput} name = "password" value = {registerData.password} className = "form-control border-right-0 border-top-0 border-left-0 rounded-0" placeholder = "password" minLength="6" required />
                                 </div>
-                                <button type="submit" className = "btn btn-primary btn-block rounded-pill">Register</button>
+                                <button type="submit" className = "btn btn-primary btn-block rounded-pill border-0">Register</button>
                             </form>
                             {
                                 registerIsLoading ? (
                                     <div className="spinner-grow"  role="status">
                                         <span className="sr-only">Loading...</span>
-                                    </div>) : registerIsError ? (<div className="alert alert-danger px-1 py-2" role="alert">{message}</div>) : ("")
+                                    </div>) : registerIsError ? (<div className = "alert alert-danger bg-white px-1 py-2 border-0" style = {{color:"#CC0000"}}role="alert">{message}</div>) : ("")
                             }
                             <p className = "mt-3 text-center">One of us? {" "}<Link to = "/login" key = {uuidv4()}>Login</Link> </p>
                         </div>

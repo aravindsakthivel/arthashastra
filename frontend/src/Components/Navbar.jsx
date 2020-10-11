@@ -2,17 +2,18 @@ import React, { useState} from "react";
 import {Redirect} from "react-router-dom";
 import { Link} from "react-router-dom";
 import logo from '../Resources/logo.png'
-import {HomeIcon} from './StyledComponents'
+import {HomeIcon, CustomNavBar} from './StyledComponents'
 import { v4 as uuidv4 } from 'uuid'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChartLine } from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = () => {
     return (
         <>
-			<nav className = "navbar navbar-expand-lg navbar-dark bg-dark shadow ">
-				<HomeIcon className = "mr-3" src = {logo} alt = "Product logo" />
-				<button className = "navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span className = "navbar-toggler-icon"></span>
+			<CustomNavBar className = "navbar navbar-expand-md navbar-dark shadow py-lg-0 py-md-0">
+				<FontAwesomeIcon icon={faChartLine} size = "lg" className = "mr-2 text-light"/>
+				<button className = "navbar-toggler px-1" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span className = "navbar-toggler-icon text-dark"></span>
 				</button>
 				<div className = "collapse navbar-collapse" id="navbarSupportedContent">
 					<ul className = "navbar-nav mr-auto my-2">
@@ -29,7 +30,7 @@ const Navbar = () => {
 						</li>
 					</ul>
 				</div>
-			</nav>
+			</CustomNavBar>
 		</>
     )
 }
