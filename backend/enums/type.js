@@ -1,2 +1,5 @@
-export const CREDIT = "Credit"
-export const DEBIT = "Debit"
+const CREDIT = "Credit"
+const DEBIT = "Debit"
+
+
+module.exports = {CREDIT, DEBIT}
