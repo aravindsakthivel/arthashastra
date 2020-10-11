@@ -8,6 +8,7 @@ const Transaction = require('./models/Transactions')
 const userData = require('./data/users')
 const transactionData = require('./data/transactions')
 const authRouter = require('./routes/authRouter')
+const transactRouter = require('./routes/transactRouter')
 
 
 const app = express()
@@ -51,6 +52,8 @@ db.once("open", async () => {
 })
 
 app.use("/api/auth", authRouter)
+
+app.use("/api/transact", transactRouter)
 
 // app.use("/api/transactions", authRouter)
 

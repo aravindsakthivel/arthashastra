@@ -1,5 +1,5 @@
-const Joi = require('Joi')
-const gender = require('../enums/gender')
+const Joi = require('joi')
+const gender = require('../../enums/gender')
 
 const regValidation = (data) => {
     const schema = Joi.object({
@@ -8,7 +8,7 @@ const regValidation = (data) => {
         username: Joi.string().min(1).required(),
         gender: Joi.string().valid(gender.MALE, gender.FEMALE, gender.OTHER),
         password: Joi.string().min(6).required(),
-        mob: Joi.string().min(10)
+        mob: Joi.string().min(10).max(16).rule({message: "Mobile Number must be of length >=10 and <=16"})
     })
 
     return schema.validate(data)

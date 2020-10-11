@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 
-const {loginValidation, regValidation} = require("../helpers/validation");
+const {loginValidation, regValidation} = require("../helpers/validations/authValidation");
 
 const User = require('../models/Users')
 
@@ -33,7 +33,7 @@ const registerUser = async (req, res) => {
     })
 
     try{
-        const savedUser = await user.save()
+        await user.save()
         res.status(200).json({error: false, message: "registration successfull"})
     }
     catch(err){
