@@ -7,12 +7,12 @@ export const HomeIcon = styled.img`
 `
 
 export const FormWrapper = styled.div`
-    height: 100vh;
-    position:fixed;
-    background: #8E2DE2;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    height: 91.7vh;
+    /* position:; */
+    /* overflow-wrap:auto; */
+    background: #34e89e;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #0f3443, #34e89e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #0f3443, #34e89e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 `
 
 export const Mlabel = styled.label`

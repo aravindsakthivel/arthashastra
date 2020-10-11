@@ -9,22 +9,22 @@ import { v4 as uuidv4 } from 'uuid'
 const Navbar = () => {
     return (
         <>
-			<nav className = "navbar navbar-expand-lg navbar-dark bg-dark shadow py-3">
+			<nav className = "navbar navbar-expand-lg navbar-dark bg-dark shadow ">
 				<HomeIcon className = "mr-3" src = {logo} alt = "Product logo" />
 				<button className = "navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span className = "navbar-toggler-icon"></span>
 				</button>
 				<div className = "collapse navbar-collapse" id="navbarSupportedContent">
-					<ul className = "navbar-nav mr-auto">
-						<li className = "nav-item active">
+					<ul className = "navbar-nav mr-auto my-2">
+						<li className = "nav-item">
 							<Link to = "/dashboard" key = {uuidv4()} >Dashboard</Link>
 						</li>
 					</ul>
-					<ul className = "navbar-nav ml-auto">
-						<li className = "nav-item mr-2">
+					<ul className = "navbar-nav ml-auto ">
+						<li className = "nav-item mr-3 my-2">
 							<Link to = "/login" key = {uuidv4()} >Login</Link>
 						</li>
-						<li className = "nav-item">
+						<li className = "nav-item mr-2 my-2">
 							<Link to = "/register" key = {uuidv4()} >Register</Link>
 						</li>
 					</ul>

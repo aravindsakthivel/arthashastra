@@ -5,6 +5,7 @@ import { loginUserProcess } from "../Redux/action";
 import {Redirect} from "react-router-dom";
 import {FormWrapper} from "../Components/StyledComponents"
 import { v4 as uuidv4 } from 'uuid'
+import logo from '../Resources/logo.png'
 
 const Login = () => {
     const [loginData, setLoginData] = useState({
@@ -13,7 +14,12 @@ const Login = () => {
     })
 
     const dispatch = useDispatch()
-    const isAuth = useSelector((state) => state.authData.isAuth) 
+    const isAuth = useSelector((state) => state.authData.isAuth)
+    const loginIsLoading = useSelector((state) => state.authData.loginIsLoading)
+    const loginIsError = useSelector((state) => state.authData.loginIsError)
+    const message = useSelector((state) => state.authData.message)
+    
+
 
     const handleInput = (e) => {
         setLoginData({...loginData, [e.target.name]: e.target.value})
@@ -34,18 +40,24 @@ const Login = () => {
             <FormWrapper className = "container-fluid max-height bg-light">
                 <div className = "row justify-content-center">
                     <div className = "col-11 col-sm-12 col-md-6 col-lg-4">
-                        <div className = "p-lg-5 p-md-5 mt-3 p-4 mt-lg-4 mt-md-4 border rounded shadow bg-light text-center">
-                            <h4 className = "mb-5">Sign in</h4>
-                            <form onSubmit={handleSubmit}>
+                        <div className = "p-lg-4 p-md-4 mt-3 p-4 mt-lg-4 mt-md-4 border rounded-lg bg-white text-center">
+                            <img className = "rounded-circle w-25 mb-4" src = {logo} />
+                            <form onSubmit={handleSubmit} className = "mb-2">
                                 <div className = "form-group">
-                                    <input type="text" onChange = {handleInput} name = "username" value = {loginData.username} className = "form-control"  placeholder = "username" aria-describedby="emailHelp" />
+                                    <input type="text" onChange = {handleInput} name = "username" value = {loginData.username} className = "form-control border-right-0 border-top-0 border-left-0 rounded-0"  placeholder = "username" aria-describedby="emailHelp" required />
                                 </div>
                                 <div className = "form-group">
-                                    <input type="password" onChange = {handleInput} name = "password" value = {loginData.password} className = "form-control" placeholder = "password" />
+                                    <input type="password" onChange = {handleInput} name = "password" value = {loginData.password} className = "form-control border-right-0 border-top-0 border-left-0 rounded-0" placeholder = "password" required />
                                 </div>
-                                <button type="submit" className = "btn btn-primary btn-sm btn-block">Login</button>
+                                <button type="submit" className = "btn btn-primary btn-block rounded-pill">Login</button>
                             </form>
-                            <p className = "mt-3">Not registered yet?{" "} <Link to = "/register" key = {uuidv4()}>Register</Link> </p>
+                            {
+                                loginIsLoading ? (
+                                    <div className = "spinner-grow"  role = "status">
+                                        <span className = "sr-only">Loading...</span>
+                                    </div>) : loginIsError ? (<div className = "alert alert-danger px-1 py-2" role = "alert">{message}</div>) : ("")
+                            }
+                            <p className = "mt-2">Not registered yet?{" "} <Link to = "/register" key = {uuidv4()}>Register</Link> </p>
                         </div>
                     </div>
                 </div>
