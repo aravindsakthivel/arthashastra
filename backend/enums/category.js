@@ -1,5 +1,7 @@
-export const FOOD = "Food"
-export const HEALTH = "Health"
-export const LEISURE = "Leisure"
-export const MISCELLANOUS = "Miscellaneous"
-export const TRANSPORTATION = "Transportation"
+const FOOD = "Food"
+const HEALTH = "Health"
+const LEISURE = "Leisure"
+const MISCELLANOUS = "Miscellaneous"
+const TRANSPORTATION = "Transportation"
+
+module.exports = {FOOD, HEALTH, LEISURE, MISCELLANOUS, TRANSPORTATION}

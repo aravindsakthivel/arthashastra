@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const uuid = require('uuid')
+const gender = require("../enums/gender")
 
 const Schema = mongoose.Schema
 
@@ -17,16 +18,26 @@ const userSchema = new Schema({
         min: 1
     },
 
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+        min: 1,
+        max: 255
+    },
+
     email: {
         type: String,
         required: true,
         min: 6,
-        max: 255
+        max: 255,
+        unique: true
     },
 
     gender: {
         type: String,
-        enum: ["Male", "Female"]
+        enum: [gender.FEMALE, gender.MALE, gender.OTHER],
+        default: gender.OTHER
     },
 
     password: {
