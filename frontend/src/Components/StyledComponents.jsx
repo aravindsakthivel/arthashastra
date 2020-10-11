@@ -37,10 +37,36 @@ export const CenterContainer = styled.div`
 export const CustomNavBar = styled.nav`
     background-color:#3F729B;
     padding:4px 10px;
-    /* height: 35px; */
     a{
         color: white;
         text-decoration:none;
         font-weight:600;
+    }
+`
+
+export const SideNav = styled.div`
+    position:fixed;
+    height: 100vh;
+    z-index: 1;
+    padding:0;
+    @media only screen and (min-width: 1024px) {
+        background-color:rgb(39, 43, 44);
+    }
+    >div:first-child{
+        background-color:rgb(39, 43, 44);
+
+    }
+`
+
+export const InfoBar = styled.div`
+    /* height:100vh; */
+`
+
+export const RoundedDiv = styled.div`
+    border-radius:15px; 
+    >div:first-child{
+        canvas{
+            height: 400px;
+        }
     }
 `
