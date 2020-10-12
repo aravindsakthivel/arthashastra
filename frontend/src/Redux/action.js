@@ -47,7 +47,7 @@ export const LogoutUser = () => ({
 export const registerUserProcess = (payload) => dispatch => {
     const config = {
         method: 'post',
-        url: 'http://localhost:3004/users',
+        url: 'http://localhost:8080/api/auth/register',
         headers: { 
             'Content-Type': 'application/json'
         },
@@ -63,7 +63,7 @@ export const registerUserProcess = (payload) => dispatch => {
 export const loginUserProcess = (payload) => dispatch => {
     const config = {
         method: 'post',
-        url: 'http://localhost:3004/users',
+        url: 'http://localhost:8080/api/auth/login',
         headers: { 
             'Content-Type': 'application/json'
         },
