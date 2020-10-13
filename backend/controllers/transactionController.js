@@ -10,7 +10,6 @@ const User = require("../models/Users");
 const transactGet = async (req, res) => {
     const {error} = transactGetValidation(req.body)
     if(error){
-        console.log(error)
         return res.status(400).json({error: true, message: error.details[0].message})
     }
 
@@ -68,8 +67,7 @@ const transactDelete = async (req, res) => {
     }
 
     try{
-        const transact = await Transaction.deleteOne({id: req.body.id})
-        console.log(transact)
+        await Transaction.deleteOne({id: req.body.id})
         res.status(200).json({error: false, message: "Transaction Deleted successfully."})
     }
     catch(err){

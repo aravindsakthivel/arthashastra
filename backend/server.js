@@ -55,8 +55,6 @@ app.use("/api/auth", authRouter)
 
 app.use("/api/transact", transactRouter)
 
-// app.use("/api/transactions", authRouter)
-
 const port = process.env.PORT || 5000
 
 app.listen(port, () => {
