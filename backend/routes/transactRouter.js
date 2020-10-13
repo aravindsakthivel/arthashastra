@@ -6,7 +6,7 @@ const transactRouter = express.Router()
 
 transactRouter.get('/', transactGet)
 transactRouter.post('/add', transactAdd)
-transactRouter.put('/update', transactUpdate)
+transactRouter.patch('/update', transactUpdate)
 transactRouter.delete('/delete', transactDelete)
 
 module.exports = transactRouter

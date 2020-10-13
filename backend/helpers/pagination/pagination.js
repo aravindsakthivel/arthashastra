@@ -9,7 +9,7 @@ const paginatedResults = async (model, req, findBy, sorts) => {
     let endIndex = startIndex + limit
 
     try{
-        let size = await model.countDocuments().exec()
+        let size = await model.find({...findBy}).sort({...sorts}).countDocuments().exec()
         results.totalCount = size
         if(size > limit){
             if(startIndex <= 0){
@@ -39,7 +39,7 @@ const paginatedResults = async (model, req, findBy, sorts) => {
             results.current = await model.find({...findBy}).sort({...sorts}).limit(limit).skip(startIndex).exec()
         }
         else{
-            results.current = await model.find()
+            results.current = await model.find({...findBy}).sort({...sorts}).exec()
         }
         return {error: false, data: results}
     }
