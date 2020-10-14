@@ -7,7 +7,7 @@ export const HomeIcon = styled.img`
 `
 
 export const FormWrapper = styled.div`
-    height: 100vh;
+    height: 93vh;
     /* position:; */
     /* overflow-wrap:auto; */
     button{

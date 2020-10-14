@@ -36,7 +36,7 @@ const Login = () => {
         dispatch(loginUserProcess(userInfo))
     }
 
-    console.log(isAuth, loginData.username)
+    console.log(isAuth, loginData.username, loginIsError, loginIsLoading, message)
     if(!isAuth){
         return (
             <FormWrapper className = "container-fluid max-height bg-light">

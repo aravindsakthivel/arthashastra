@@ -5,7 +5,22 @@ import {
     LOGIN_USER_REQUEST, 
     LOGIN_USER_SUCCESS, 
     LOGIN_USER_FAILURE,
-    LOGOUT_USER} from "./actionTypes" 
+    LOGOUT_USER,
+    ADD_TRANSACTION_REQUEST,
+    ADD_TRANSACTION_SUCCESS,
+    ADD_TRANSACTION_FAILURE,
+    GET_TRANSACTIONS_REQUEST,
+    GET_TRANSACTIONS_SUCCESS,
+    GET_TRANSACTIONS_FAILURE,
+    GET_TOP_TRANSACTIONS_REQUEST,
+    GET_TOP_TRANSACTIONS_SUCCESS,
+    GET_TOP_TRANSACTIONS_FAILURE,
+    UPDATE_TRANSACTION_REQUEST,
+    UPDATE_TRANSACTION_SUCCESS,
+    UPDATE_TRANSACTION_FAILURE,
+    DELETE_TRANSACTIONS_REQUEST,
+    DELETE_TRANSACTIONS_SUCCESS,
+    DELETE_TRANSACTIONS_FAILURE,} from "./actionTypes" 
 import axios from "axios";
 
 
@@ -43,21 +58,35 @@ export const LogoutUser = () => ({
     type: LOGOUT_USER
 })
 
+export const addTransactionRequest = payload => ({
+    type : ADD_TRANSACTION_REQUEST,
+    payload
+})
 
-export const registerUserProcess = (payload) => dispatch => {
-    const config = {
-        method: 'post',
-        url: 'http://localhost:8080/api/auth/register',
-        headers: { 
-            'Content-Type': 'application/json'
-        },
-        data : payload
-    }
-    dispatch(registerUserRequest(true))
-    return axios(config)
-        .then(res => dispatch(registerUserSuccess(res)))
-        .catch(err => dispatch(registerUserFailure(err)));
-}
+export const addTransactionSuccess = payload => ({
+    type : ADD_TRANSACTION_SUCCESS,
+    payload
+})
+
+export const addTransactionFailure = payload => ({
+    type : ADD_TRANSACTION_FAILURE,
+    payload
+})
+
+export const getTopTransactionRequest = payload => ({
+    type : GET_TOP_TRANSACTIONS_REQUEST,
+    payload
+})
+
+export const getTopTransactionSuccess = payload => ({
+    type : GET_TOP_TRANSACTIONS_SUCCESS,
+    payload
+})
+
+export const getTopTransactionFailure = payload => ({
+    type : GET_TOP_TRANSACTIONS_FAILURE,
+    payload
+})
 
 
 export const loginUserProcess = (payload) => dispatch => {
@@ -71,6 +100,55 @@ export const loginUserProcess = (payload) => dispatch => {
     }
     dispatch(loginUserRequest(true))
     return axios(config)
-        .then(res => dispatch(loginUserSuccess(res)))
+        .then(res => dispatch(loginUserSuccess(res.data)))
         .catch(err => dispatch(loginUserFailure(err)))
+}
+
+
+export const registerUserProcess = (payload) => dispatch => {
+    console.log(payload)
+    const config = {
+        method: 'post',
+        url: 'http://localhost:8080/api/auth/register',
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        data : payload
+    }
+    dispatch(registerUserRequest(true))
+    return axios(config)
+        .then(res => dispatch(registerUserSuccess(res.data)))
+        .catch(err => dispatch(registerUserFailure(err)));
+}
+
+export const getTopTransactionProcess = (payload) => dispatch => {
+    const config = {
+        method: 'get',
+        url: 'http://localhost:8080/api/transact?page=1&limit=5',
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        data : payload
+    }
+    dispatch(getTopTransactionRequest(true))
+    return axios(config)
+        .then(res => dispatch(getTopTransactionSuccess(res.data)))
+        .catch(err => dispatch(getTopTransactionFailure(err)))
+}
+
+
+export const addTransactionProcess = (payload) => dispatch => {
+    const config = {
+        method: 'post',
+        url: 'http://localhost:8080/api/transact/add',
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        data : payload
+    }
+    dispatch(addTransactionRequest(true))
+    return axios(config)
+        .then(res => dispatch(addTransactionSuccess(res)))
+        .then(res => dispatch(getTopTransactionProcess(payload.user_id)))
+        .catch(err => dispatch(addTransactionFailure(err)))
 }

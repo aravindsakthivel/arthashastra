@@ -6,6 +6,7 @@ import {
     REGISTER_USERS_SUCCESS, 
     REGISTER_USERS_FAILURE,
     LOGOUT_USER } from "../actionTypes" 
+    import { loadData} from "../localStorage";
 
 
 const initState = {
@@ -14,7 +15,9 @@ const initState = {
     loginIsLoading:false,
     loginIsError:false,
     message:"",
-    isAuth:false
+    userData:loadData("userData") || {},
+    userId:loadData("userId") || "",
+    isAuth:loadData("isAuth") || false
 }
 
 
@@ -39,7 +42,7 @@ export default (state = initState, { type, payload }) => {
         case REGISTER_USERS_FAILURE:
             return {
                 ...state,
-                registerIsError: payload.error,
+                registerIsError: true,
                 message:payload.message,
                 registerIsLoading: false
             };
@@ -54,7 +57,8 @@ export default (state = initState, { type, payload }) => {
         case LOGIN_USER_SUCCESS:
             return {
                 ...state,
-                token: payload.token,
+                userData: payload.data,
+                userId : payload.data.id,
                 loginIsLoading: false,
                 isAuth:true
             };
@@ -62,7 +66,7 @@ export default (state = initState, { type, payload }) => {
         case LOGIN_USER_FAILURE:
             return {
                 ...state,
-                loginIsError: payload.error,
+                loginIsError: true,
                 message:payload.message,
                 loginIsLoading: false,
             };
