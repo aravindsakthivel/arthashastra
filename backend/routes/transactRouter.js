@@ -4,7 +4,7 @@ const {transactAdd, transactUpdate, transactDelete, transactGet} = require('../c
 
 const transactRouter = express.Router()
 
-transactRouter.get('/', transactGet)
+transactRouter.post('/', transactGet)
 transactRouter.post('/add', transactAdd)
 transactRouter.patch('/update', transactUpdate)
 transactRouter.delete('/delete', transactDelete)
