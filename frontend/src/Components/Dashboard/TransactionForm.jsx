@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {addTransactionProcess} from '../../Redux/action'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -34,15 +36,26 @@ export default function TransactionForm(props) {
 		category:"",
 		amount:""
 	});
+	const dispatch = useDispatch()
+	const userId = useSelector((state) => state.authData.userId)
+
 	console.log(formValue)
 	const handleChange = (e) => {
 		setValue({...formValue, [e.target.name]: e.target.value});
+		
 	};
 
 	// console.log(props.info)
 
-	const handleSubmit = () => {
-		console.log(5)
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		let data = {
+			"user_id": userId,
+			"type": props.info.type,
+			"category": formValue.category,
+			"amount": formValue.amount
+		}
+		dispatch(addTransactionProcess(data))
 	}
 
 	return (

@@ -34,14 +34,14 @@ import ModalForm from './Modal'
 import TransactionForm from './TransactionForm'
 
 const incomeFormData = {
-	inforamtion:"Use the below form to add income details use the select box for income, loan, inheritance, others (Click outside to close)",
-	category:['Salary', 'Loan', 'Inheritance', 'Others'],
+	inforamtion:"Use the below form to add income details use the select box for Salary, Borrowed, Inheritance, Others (Click outside to close)",
+	category:['Salary', 'Borrowed', 'Inheritance', 'Others'],
 	type:"Credit"
 }
 
 const expenseFormData = {
-	inforamtion:"Use the below form to add expense details use the select box for Food, Shopping, Rent, others (Click outside to close)",
-	category:['Food', 'Shopping', 'Rent', 'others'],
+	inforamtion:"Use the below form to add expense details use the select box for Food, Health, Leisure, Rent, Miscellaneous, Transportation (Click outside to close)",
+	category:['Food', 'Health', 'Leisure', 'Rent', 'Miscellaneous', 'Transportation'],
 	type:"Debit"
 }
 

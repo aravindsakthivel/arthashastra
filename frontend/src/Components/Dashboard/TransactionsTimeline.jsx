@@ -77,14 +77,17 @@ export default function CustomizedTimeline() {
 	const userId = useSelector((state) => state.authData.userId)
 	
 	useEffect(() => {
-		dispatch(getTopTransactionProcess({"user_id" : userId}))
+		let data = {
+			"user_id" : userId
+		}
+		dispatch(getTopTransactionProcess(data))
 	}, [])
 
 	console.log(topTransactions, userId)
 	return (
 		<Timeline align="alternate">
 			{
-				topTransactions && topTransactions.map((transaction) => (
+				data && data.map((transaction) => (
 					<TimelineItem key = {uuidv4()}>
 						<TimelineOppositeContent>
 							<Typography variant="body2" color="textSecondary">
@@ -113,3 +116,7 @@ export default function CustomizedTimeline() {
 		</Timeline>
 	);
 }
+
+
+
+// topTransactions && topTransactions
