@@ -68,15 +68,15 @@ const Register = () => {
                                 <p className = "form-check-label float-left mt-1 mr-3" >gender: </p>
                                 <div className = "mb-1 float-left" onChange = {handleInput} id = "genderBar"> 
                                     <div className = "form-check form-check-inline">
-                                        <input className = "form-check-input mt-1" type = "radio" name = "gender" id = "inlineRadio1" value = "male" />
+                                        <input className = "form-check-input mt-1" type = "radio" name = "gender" id = "inlineRadio1" value = "Male" />
                                         <Mlabel className = "form-check-label mt-1" htmlFor = "inlineRadio1">Male</Mlabel>
                                     </div>
                                     <div className = "form-check form-check-inline">
-                                        <input className = "form-check-input" type = "radio" name = "gender" id = "inlineRadio2" value = "female" />
+                                        <input className = "form-check-input" type = "radio" name = "gender" id = "inlineRadio2" value = "Female" />
                                         <Mlabel className = "form-check-label" htmlFor ="inlineRadio2">Female</Mlabel>
                                     </div>
                                     <div className = "form-check form-check-inline">
-                                        <input className = "form-check-input" type = "radio" name = "gender" id = "inlineRadio3" value = "others" />
+                                        <input className = "form-check-input" type = "radio" name = "gender" id = "inlineRadio3" value = "Other" />
                                         <Mlabel className = "form-check-label" htmlFor  = "inlineRadio3">Other</Mlabel>
                                     </div>
                                 </div>

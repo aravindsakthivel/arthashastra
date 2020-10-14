@@ -53,7 +53,7 @@ export default (state = initState, { type, payload }) => {
         case GET_TOP_TRANSACTIONS_SUCCESS:
             return {
                 ...state,
-                topTransactions: payload.current,
+                topTransactions: payload.data.current,
                 getTopTransactionIsLoading: false,
                 getTopTransactionIsError:false
             };
@@ -63,7 +63,7 @@ export default (state = initState, { type, payload }) => {
                 ...state,
                 getTopTransactionIsError: payload.error,
                 message:payload.message,
-                loginIsLoading: false,
+                getTopTransactionLoading: false,
             };
 
         default:

@@ -122,17 +122,17 @@ export const registerUserProcess = (payload) => dispatch => {
 }
 
 export const getTopTransactionProcess = (payload) => dispatch => {
+    console.log(payload)
     const config = {
-        method: 'get',
-        url: 'http://localhost:8080/api/transact?page=1&limit=5',
         headers: { 
             'Content-Type': 'application/json'
-        },
-        data : payload
+        }
     }
+    console.log(config)
+    axios.get('http://localhost:8080/api/transact?page=1&limit=5', payload, config)
     dispatch(getTopTransactionRequest(true))
     return axios(config)
-        .then(res => dispatch(getTopTransactionSuccess(res.data)))
+        .then(res => dispatch(getTopTransactionSuccess(res)))
         .catch(err => dispatch(getTopTransactionFailure(err)))
 }
 
