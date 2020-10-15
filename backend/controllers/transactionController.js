@@ -3,6 +3,7 @@ const { transactAddValidation,
         transactUpdateValidation,
         transactGetValidation} = require("../helpers/validations/transactionValidation");
 const {paginatedResults} = require('../helpers/pagination/pagination')
+const type = require('../enums/type')
 
 const Transaction = require('../models/Transactions');
 const User = require("../models/Users");
@@ -27,7 +28,23 @@ const transactGet = async (req, res) => {
         filters.category = filter_by_category.toLowerCase().split('').map((x, i) => i===0 ? x.toUpperCase() : x).join('')
     }
 
-    let results = await paginatedResults(Transaction, req, filters, {timestamp : -1})
+    let results = null
+    try{
+        results = await paginatedResults(Transaction, req, filters, {timestamp : -1})
+        let credit = await Transaction.aggregate( [{ $match: {type: type.CREDIT } },
+                                                    { $group: {_id: null, amount: {$sum: "$amount"}} }
+                                                ])
+        let debit = await Transaction.aggregate( [{ $match: {type: type.DEBIT} },
+                                                    { $group: {_id: null, amount: {$sum: "$amount"}} }
+                                                ])
+        results.data.credit = credit[0].amount
+        results.data.debit = debit[0].amount
+    }
+    catch(err){
+        res.status(400).json({error: true, message: "Something went wrong."})
+        return
+    }
+
     if(results.error){
         res.status(400).json({...results})
     }
