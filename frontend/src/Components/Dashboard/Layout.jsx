@@ -64,12 +64,14 @@ const useStyles = makeStyles((theme) => ({
 		padding:5,
 	},
 	incomeCard:{
-		backgroundColor:"#00C851",
+		backgroundColor:"#078282FF",
 		borderRadius:20,
+		color:"#95DBE5FF"
 	},
 	expenseCard:{
-		backgroundColor:"#ff4444",
+		backgroundColor:"#BA0020FF",
 		borderRadius:20,
+		color:"#f58484"
 	},
 	transactionsPaper:{
 		borderRadius:20,
