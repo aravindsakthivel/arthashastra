@@ -21,7 +21,8 @@ import {
     DELETE_TRANSACTIONS_REQUEST,
     DELETE_TRANSACTIONS_SUCCESS,
     DELETE_TRANSACTIONS_FAILURE,
-    FILTER_TRANSACTIONS,
+    FILTER_TRANSACTIONS_TYPE,
+    FILTER_TRANSACTIONS_CATEGORY,
     SORT_TRANSACTIONS,
     REMOVE_MESSAGE} from "./actionTypes" 
 import axios from "axios";
@@ -110,8 +111,13 @@ export const removeMessage = payload => ({
     type : REMOVE_MESSAGE
 })
 
-export const filterTransactions = payload => ({
-    type : FILTER_TRANSACTIONS,
+export const filterTransactionsType = payload => ({
+    type : FILTER_TRANSACTIONS_TYPE,
+    payload
+})
+
+export const filterTransactionsCategory = payload => ({
+    type : FILTER_TRANSACTIONS_CATEGORY,
     payload
 })
 

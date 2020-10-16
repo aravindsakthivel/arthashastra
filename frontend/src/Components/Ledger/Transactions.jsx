@@ -60,7 +60,8 @@ export default function Transactions() {
 	const totalCount = useSelector((state) => state.ledgerData.totalCount)
 	const limit = useSelector((state) => state.ledgerData.limit)
 	const page = useSelector((state) => state.ledgerData.page)
-	const filterOpt = useSelector((state) => state.ledgerData.filterOpt)
+	const filter_type = useSelector((state) => state.ledgerData.filter_type)
+	const filter_category = useSelector((state) => state.ledgerData.filter_category)
 	const sortOpt = useSelector((state) => state.ledgerData.sortOpt)
 	const [statePage, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -90,16 +91,46 @@ export default function Transactions() {
 		dispatch(getTransactionProcess(data))
 	};
 
-	const filterLogic = (data) => {
-		console.log(filterOpt)
-		if(filterOpt === ""){
+	const filterTypeLogic = (data) => {
+		if(filter_type === ""){
 			return data
 		}
-		else if(filterOpt === "credit"){
+		else if(filter_type === "credit"){
 			return data.type === "Credit"
 		}
-		else if(filterOpt === "debit"){
+		else if(filter_type === "debit"){
 			return data.type === "Debit"
+		}
+	}
+
+	const filterCategoryLogic = (data) => {
+		console.log(filter_category,data.category)
+		if(filter_category === ""){
+			return data
+		}
+		else if(filter_category === "salary"){
+			return data.category === "Salary"
+		}
+		else if(filter_category === "borrowed"){
+			return data.category === "Borrowed"
+		}
+		else if(filter_category === "miscellaneous"){
+			return data.category === "Miscellaneous"
+		}
+		else if(filter_category === "food"){
+			return data.category === "Food"
+		}
+		else if(filter_category === "health"){
+			return data.category === "Health"
+		}
+		else if(filter_category === "leisure"){
+			return data.category === "Leisure"
+		}
+		else if(filter_category === "rent"){
+			return data.category === "Rent"
+		}
+		else if(filter_category === "transportation"){
+			return data.category === "Transportation"
 		}
 	}
 
@@ -145,7 +176,7 @@ export default function Transactions() {
 				</TableRow>
 			</TableHead>
 			<TableBody>
-				{transactions && transactions.filter(filterLogic).sort(sortLogic).map((row) => {
+				{transactions && transactions.filter(filterTypeLogic).filter(filterCategoryLogic).sort(sortLogic).map((row) => {
 					return (
 						<TableRow hover role="checkbox" tabIndex={-1} key={uuid()}>
 							{columns.map((column) => {
