@@ -69,9 +69,9 @@ export default function FilterandSort() {
             </SimplePaper>
             <SimplePaper>
                 <ButtonGroup size="large" color="primary" aria-label="large outlined primary button group">
-                    <Button size="small" onClick = {() => sortData("lowtohigh")}><FontAwesomeIcon icon = {faSortNumericDown} size = "lg" /></Button>
-                    <Button size="small" onClick = {() => sortData("hightolow")}><FontAwesomeIcon icon = {faSortNumericUpAlt} size = "lg" /></Button>
-                    <Button size="small" onClick = {() => sortData("")}><FontAwesomeIcon icon = {faCircle} size = "lg" /></Button>
+                    <Button onClick = {() => sortData("lowtohigh")}><FontAwesomeIcon icon = {faSortNumericDown} size = "lg" /></Button>
+                    <Button onClick = {() => sortData("hightolow")}><FontAwesomeIcon icon = {faSortNumericUpAlt} size = "lg" /></Button>
+                    <Button onClick = {() => sortData("")}><FontAwesomeIcon icon = {faCircle} size = "lg" /></Button>
                 </ButtonGroup>
             </SimplePaper>
         </div>
