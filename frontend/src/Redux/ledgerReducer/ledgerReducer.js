@@ -2,7 +2,8 @@ import {
     GET_TRANSACTIONS_REQUEST,
     GET_TRANSACTIONS_SUCCESS,
     GET_TRANSACTIONS_FAILURE,
-    FILTER_TRANSACTIONS,
+    FILTER_TRANSACTIONS_TYPE,
+    FILTER_TRANSACTIONS_CATEGORY,
     SORT_TRANSACTIONS,
     LOGOUT_USER } from "../actionTypes" 
 
@@ -15,7 +16,8 @@ const initState = {
     limit:10,
     page:1,
     message:"",
-    filterOpt:"",
+    filter_type:"",
+    filter_category:"",
     sortOpt:"",
 }
 
@@ -49,10 +51,16 @@ export default (state = initState, { type, payload }) => {
                 getTransactionLoading: false,
             };
 
-        case FILTER_TRANSACTIONS:
+        case FILTER_TRANSACTIONS_TYPE:
             return{
                 ...state,
-                filterOpt:payload
+                filter_type:payload
+            }
+
+        case FILTER_TRANSACTIONS_CATEGORY:
+            return{
+                ...state,
+                filter_category: payload
             }
 
         case SORT_TRANSACTIONS:

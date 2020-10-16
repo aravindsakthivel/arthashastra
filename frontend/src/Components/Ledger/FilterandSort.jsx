@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSortNumericDown } from '@fortawesome/free-solid-svg-icons'
 import { faSortNumericUpAlt } from '@fortawesome/free-solid-svg-icons'
 import { faCircle } from '@fortawesome/free-solid-svg-icons'
-import { filterTransactions, sortTransactions } from '../../Redux/action'
+import { filterTransactionsType, filterTransactionsCategory, sortTransactions } from '../../Redux/action'
 import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
@@ -31,8 +31,12 @@ export default function FilterandSort() {
     const dispatch = useDispatch()
 
 
-    const filterData = (option) => {
-        dispatch(filterTransactions(option))
+    const filterType = (option) => {
+        dispatch(filterTransactionsType(option))
+    }
+
+    const filterCategory = (option) => {
+        dispatch(filterTransactionsCategory(option))
     }
 
     const sortData = (option) => {
@@ -45,23 +49,29 @@ export default function FilterandSort() {
         <div className={classes.root}>
             <SimplePaper>
                 <ButtonGroup size="large" color="primary" aria-label="large outlined primary button group">
-                    <Button onClick = {() => filterData("debit")}>Debit</Button>
-                    <Button onClick = {() => filterData("credit")}>Credit</Button>
-                    <Button onClick = {() => filterData("")}>All</Button>
+                    <Button size="small" onClick = {() => filterType("debit")}>Debit</Button>
+                    <Button size="small" onClick = {() => filterType("credit")}>Credit</Button>
+                    <Button size="small" onClick = {() => filterType("")}>All</Button>
                 </ButtonGroup>
             </SimplePaper>
             <SimplePaper>
                 <ButtonGroup size="large" color="primary" aria-label="large outlined primary button group">
-                    <Button onClick = {() => filterData("debit")}>Debit</Button>
-                    <Button onClick = {() => filterData("credit")}>Credit</Button>
-                    <Button onClick = {() => filterData("")}>All</Button>
+                    <Button size="small" onClick = {() => filterCategory("salary")}>salary</Button>
+                    <Button size="small" onClick = {() => filterCategory("borrowed")}>borrowed</Button>
+                    <Button size="small" onClick = {() => filterCategory("miscellaneous")}>miscellaneous</Button>
+                    <Button size="small" onClick = {() => filterCategory("food")}>food</Button>
+                    <Button size="small" onClick = {() => filterCategory("health")}>health</Button>
+                    <Button size="small" onClick = {() => filterCategory("leisure")}>leisure</Button>
+                    <Button size="small" onClick = {() => filterCategory("rent")}>rent</Button>
+                    <Button size="small" onClick = {() => filterCategory("transportation")}>transportation</Button>
+                    <Button size="small" onClick = {() => filterCategory("")}>All</Button>
                 </ButtonGroup>
             </SimplePaper>
             <SimplePaper>
                 <ButtonGroup size="large" color="primary" aria-label="large outlined primary button group">
-                    <Button onClick = {() => sortData("lowtohigh")}><FontAwesomeIcon icon = {faSortNumericDown} size = "lg" /></Button>
-                    <Button onClick = {() => sortData("hightolow")}><FontAwesomeIcon icon = {faSortNumericUpAlt} size = "lg" /></Button>
-                    <Button onClick = {() => sortData("")}><FontAwesomeIcon icon = {faCircle} size = "lg" /></Button>
+                    <Button size="small" onClick = {() => sortData("lowtohigh")}><FontAwesomeIcon icon = {faSortNumericDown} size = "lg" /></Button>
+                    <Button size="small" onClick = {() => sortData("hightolow")}><FontAwesomeIcon icon = {faSortNumericUpAlt} size = "lg" /></Button>
+                    <Button size="small" onClick = {() => sortData("")}><FontAwesomeIcon icon = {faCircle} size = "lg" /></Button>
                 </ButtonGroup>
             </SimplePaper>
         </div>
