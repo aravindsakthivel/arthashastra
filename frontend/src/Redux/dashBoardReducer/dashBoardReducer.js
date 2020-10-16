@@ -4,7 +4,9 @@ import {
     ADD_TRANSACTION_FAILURE,
     GET_TOP_TRANSACTIONS_REQUEST,
     GET_TOP_TRANSACTIONS_SUCCESS,
-    GET_TOP_TRANSACTIONS_FAILURE } from "../actionTypes" 
+    GET_TOP_TRANSACTIONS_FAILURE,
+    REMOVE_MESSAGE,
+    LOGOUT_USER } from "../actionTypes" 
     
 
 
@@ -14,7 +16,8 @@ const initState = {
     getTopTransactionIsLoading:false,
     getTopTransactionIsError:false,
     topTransactions:[],
-    message:""
+    message:"",
+    success:false
 }
 
 
@@ -66,6 +69,23 @@ export default (state = initState, { type, payload }) => {
                 getTopTransactionLoading: false,
             };
 
+        case REMOVE_MESSAGE :
+            return{
+                ...state,
+                message:""
+            }
+        
+        case  LOGOUT_USER:
+            return{
+                ...state,
+                addTransactionIsLoading:false,
+                addTransactionIsError:false,
+                getTopTransactionIsLoading:false,
+                getTopTransactionIsError:false,
+                topTransactions:[],
+                message:"",
+                success:false
+            }
         default:
             return state;
     }

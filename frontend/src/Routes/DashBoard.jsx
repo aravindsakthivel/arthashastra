@@ -51,21 +51,10 @@ const Dashboard = () => {
     const dispatch = useDispatch()
     const isAuth = useSelector((state) => state.authData.isAuth) 
     console.log(isAuth)
-    if(isAuth){
-        return(
-            <DashBoardLayout />
-        )
-    }
     return(
-        <Redirect push 
-			to={{
-				pathname: "/login",
-				state: {
-					from: "Login page"
-				}
-			}}
-		/>
+        <DashBoardLayout />
     )
+
 }
 
 

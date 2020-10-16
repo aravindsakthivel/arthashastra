@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {addTransactionProcess} from '../../Redux/action'
+import {addTransactionProcess, removeMessage} from '../../Redux/action'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -15,6 +15,8 @@ import {NativeSelect,
 import NumberFormat from 'react-number-format';
 import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button'
+import Alert from '@material-ui/lab/Alert'
+import { v4 as uuidv4 } from 'uuid'
 
 
 
@@ -25,7 +27,13 @@ const useStyles = makeStyles((theme) => ({
 		width:150,
 		// margin: theme.spacing(1),
 		marginLeft:theme.spacing(3)
-	}
+	},
+	root: {
+		width: '100%',
+		'& > * + *': {
+		  marginTop: theme.spacing(2),
+		},
+	  },
 }));
 
 
@@ -38,6 +46,8 @@ export default function TransactionForm(props) {
 	});
 	const dispatch = useDispatch()
 	const userId = useSelector((state) => state.authData.userId)
+	const message = useSelector((state) => state.dashBoardData.message)
+
 
 	console.log(formValue)
 	const handleChange = (e) => {
@@ -45,9 +55,9 @@ export default function TransactionForm(props) {
 		
 	};
 
-	// console.log(props.info)
+	console.log(message)
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async(e) => {
 		e.preventDefault()
 		let data = {
 			"user_id": userId,
@@ -55,7 +65,15 @@ export default function TransactionForm(props) {
 			"category": formValue.category,
 			"amount": formValue.amount
 		}
-		dispatch(addTransactionProcess(data))
+		try{
+			await dispatch(addTransactionProcess(data))
+			setTimeout(() => {
+				dispatch(removeMessage())
+			}, 2000)
+		}
+		catch(error){
+			console.log(error)
+		}
 	}
 
 	return (
@@ -63,6 +81,9 @@ export default function TransactionForm(props) {
 			<DialogContentText>
 				{props.info.inforamtion}
 			</DialogContentText>
+			<div className={classes.root}>
+				{message.length > 0 ? <Alert severity="success">{message}</Alert> : ("")}
+			</div>
 			<form onSubmit = {handleSubmit}>
 				<TextField
 					autoFocus
@@ -76,7 +97,7 @@ export default function TransactionForm(props) {
 					fullWidth
 					required
 				/>
-				<FormControl className={classes.formControl} fullWidth required>
+				<FormControl className={classes.formControl} fullWidth required style = {{marginTop:"10px"}}>
 					<InputLabel id="demo-simple-select-label">Category</InputLabel>
 					<Select
 						labelId="demo-simple-select-label"
@@ -86,15 +107,16 @@ export default function TransactionForm(props) {
 						name = "category"
 						label = "Category"
 						margin="dense"
-					>
-						<MenuItem value = {props.info.category[0]}>{props.info.category[0]}</MenuItem>
-						<MenuItem value = {props.info.category[1]}>{props.info.category[1]}</MenuItem>
-						<MenuItem value = {props.info.category[2]}>{props.info.category[2]}</MenuItem>
-						<MenuItem value = {props.info.category[3]}>{props.info.category[3]}</MenuItem>
+					>	
+						{
+							props.info.category && props.info.category.map((value) => (
+								<MenuItem value = {value} key = {uuidv4()}>{value}</MenuItem>
+							))
+						}
 					</Select>
 				</FormControl>
 				<DialogActions>
-					<Button type = "submit" color="primary">
+					<Button type = "submit" color="primary" variant = "contained">
 						Add
 					</Button>
 				</DialogActions>

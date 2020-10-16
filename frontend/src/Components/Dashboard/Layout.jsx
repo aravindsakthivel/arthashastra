@@ -23,7 +23,7 @@ import {
 	Select, 
 	MenuItem, 
 	InputLabel} from "@material-ui/core";
-import SideDrawer from './SideDrawer'
+import SideDrawer from '../SideDrawer'
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import TrendingDownIcon from '@material-ui/icons/TrendingDown';
 import { CardBar } from "./ChartCard";
@@ -34,8 +34,8 @@ import ModalForm from './Modal'
 import TransactionForm from './TransactionForm'
 
 const incomeFormData = {
-	inforamtion:"Use the below form to add income details use the select box for Salary, Borrowed, Inheritance, Others (Click outside to close)",
-	category:['Salary', 'Borrowed', 'Inheritance', 'Others'],
+	inforamtion:"Use the below form to add income details use the select box for Salary, Borrowed, Miscellaneous (Click outside to close)",
+	category:['Salary', 'Borrowed', 'Miscellaneous'],
 	type:"Credit"
 }
 
