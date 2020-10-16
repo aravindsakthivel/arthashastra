@@ -8,7 +8,7 @@ import {
 } from '@devexpress/dx-react-chart-material-ui';
 import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "@material-ui/core";
-import { ValueScale } from '@devexpress/dx-react-chart';
+import { ValueScale } from '@devexpress/dx-react-chart'; 
 
 
 const dataIncome = [
