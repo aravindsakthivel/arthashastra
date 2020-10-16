@@ -52,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	cardRadius:{
 		borderRadius:20,
+		height:120
 	},
 	inputFormCard:{
 		display:"flex",
@@ -89,6 +90,39 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2, 4, 3),
     },
 }))
+
+const financialTips = [
+	"Make your finances a top priority", 
+	"Start with the fundamentals",
+	"Build your financial plan",
+	"Budget consistently",
+	"Set financial goals",
+	"Live within your means",
+	" Invest early and often",
+	"Automate your contributions",
+	"Pay attention to your fees",
+	"Focus on the long-term",
+	"Implement the 72-Hour Rule",
+	"Find an accountability partner",
+	"Focus on what you can control",
+	"Increase your earnings",
+	"Build an emergency fund",
+	"Shop around for your insurance",
+	"Track your Net Worth",
+	"Always pay yourself first",
+	"Don’t keep up with the Joneses",
+	"Pay more than the minimums",
+	"Pay off your credits cards",
+	"Nominate successor guardians",
+	"Plan your estate",
+	"Take Advantage of 401(k) and HSA Matches",
+	"Increase your savings rate as your income increases",
+	"Use Value-Based Spending to guide your spending",
+	"Choose term life insurance",
+	"Implement a Zero-Based Budget",
+	"Stay active and healthy",
+	"Actively revisit, review and update your financial plan"
+					]
 
 export default function DashBoardLayout() {
 	const classes = useStyles();
@@ -147,6 +181,18 @@ export default function DashBoardLayout() {
 									Add Expense
 								</Typography>
 								<TrendingDownIcon className = {classes.iconModify} />
+							</CardContent>
+						</Card>
+					</Grid>
+					<Grid item xl={3} lg={3} md={4} sm={6} xs={12}>
+						<Card className = {classes.cardRadius}>
+							<CardContent>
+								<Typography gutterBottom variant = "h4">
+									Financial tip
+								</Typography>
+								<Typography gutterBottom >
+									{financialTips[Math.floor(Math.random() * 30)]}
+								</Typography>
 							</CardContent>
 						</Card>
 					</Grid>

@@ -17,6 +17,9 @@ const initState = {
     message:"",
     filterOpt:"",
     sortOpt:"",
+    creditChart:[],
+    debitChart:[],
+    renderChart:false
 }
 
 
@@ -38,7 +41,18 @@ export default (state = initState, { type, payload }) => {
                 getTransactionIsError:false,
                 totalCount : payload.data.totalCount,
                 limit : payload.data?.next?.limit || payload.data.totalCount,
-                page : payload.data?.next?.page || 1
+                page : payload.data?.next?.page || 1,
+                creditChart:payload.data.current.filter((data) => (
+                    data.type === "Credit"
+                )).map((data, index) => (
+                    {value:data['amount'], argument:index + 1}
+                )),
+                debitChart:payload.data.current.filter((data, index) => (
+                    data.type === "Debit"
+                )).map((data, index) => (
+                    {value:data['amount'], argument:index + 1}
+                )),
+                renderChart:true
             };
 
         case GET_TRANSACTIONS_FAILURE:

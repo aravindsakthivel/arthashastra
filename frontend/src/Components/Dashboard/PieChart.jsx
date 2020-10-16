@@ -47,7 +47,6 @@ export default function PieChart(){
                     valueField = "money"
                     argumentField = "type"
                     innerRadius={0.6}
-                    name = "type"
                 />
                 <Legend position="bottom" rootComponent={Root} itemComponent={Item} labelComponent={Label} />
                 <Animation />
