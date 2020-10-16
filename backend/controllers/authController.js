@@ -62,7 +62,8 @@ const loginUser = async (req, res) => {
             message: "Logged In", 
             data: {
                 id: user.id,
-                name: user.username,
+                name: user.name,
+                username: user.username,
                 email: user.email,
                 mob: user.mob,
                 gender: user.gender
