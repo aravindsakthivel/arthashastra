@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useDispatch, useSelector } from "react-redux";
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -19,8 +20,10 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import BookIcon from '@material-ui/icons/Book';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import {Avatar} from "@material-ui/core";
-import { Grid } from "@material-ui/core";
+import { logoutUser } from '../Redux/action';
+import { v4 as uuidv4 } from 'uuid'
+import { useHistory } from "react-router-dom";
+
 
 const drawerWidth = 240;
 
@@ -100,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
 	content: {	
 		flexGrow: 1,	
 		padding: theme.spacing(3),
-		marginTop:25
+		marginTop:55,
 	},
 
 	nameMargin:{
@@ -119,7 +122,9 @@ let sideBarList = [
 export default function SideDrawer(props) {
 	const classes = useStyles();
 	const theme = useTheme();
+	const dispatch = useDispatch()
 	const [open, setOpen] = React.useState(false);
+	const history = useHistory();
 
 	const handleDrawerOpen = () => {
 		setOpen(true);
@@ -128,6 +133,14 @@ export default function SideDrawer(props) {
 	const handleDrawerClose = () => {
 		setOpen(false);
 	};
+
+	const logout = () => {
+		dispatch(logoutUser())
+	}
+
+	const handleRouteChange = (data) => {
+        history.push((data.name).toLowerCase())
+    }
 
 	return (
 		<div className={classes.root}>
@@ -175,11 +188,22 @@ export default function SideDrawer(props) {
 				</div>
 				<Divider />
 				<List>
-					{sideBarList.map(({name, icon}) => (
-					<ListItem button key={name}>
-						<ListItemIcon>{icon}</ListItemIcon>
-						<ListItemText primary={name} />
-					</ListItem>
+					{sideBarList.map(({name, icon}, index) => (
+						<React.Fragment key = {uuidv4()}>
+							{
+								index == 3 ? (
+									<ListItem button key={name} type = "button" onClick = {logout}>
+										<ListItemIcon>{icon}</ListItemIcon>
+										<ListItemText primary={name} />
+									</ListItem>
+								) : (
+									<ListItem button key={name} onClick = {() => handleRouteChange({name})}>
+										<ListItemIcon>{icon}</ListItemIcon>
+										<ListItemText primary={name} />
+									</ListItem>
+								)
+							}
+						</React.Fragment>
 					))}
 				</List>
 			</Drawer>

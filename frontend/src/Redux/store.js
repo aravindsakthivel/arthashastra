@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import authReducer from "./authReducer/authReducer"
 import dashBoardReducer from './dashBoardReducer/dashBoardReducer'
+import ledgerReducer from './ledgerReducer/ledgerReducer'
 import thunk from "redux-thunk";
 import throttle from "lodash/throttle";
 import {saveData } from "./localStorage";
@@ -9,7 +10,8 @@ import {saveData } from "./localStorage";
 
 const rootReducer = combineReducers({ 
     authData:authReducer, 
-    dashBoardData:dashBoardReducer
+    dashBoardData:dashBoardReducer,
+    ledgerData:ledgerReducer
 });
 
 

@@ -79,6 +79,8 @@ export default (state = initState, { type, payload }) => {
                 loginIsLoading:false,
                 loginIsError:false,
                 message:"",
+                userData:{},
+                userId:"",
                 isAuth:false
             }
         default:
