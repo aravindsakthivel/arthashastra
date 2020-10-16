@@ -151,7 +151,7 @@ export default function SideDrawer(props) {
 					[classes.appBarShift]: open,
 				})}
 			>
-				<Toolbar>
+				<Toolbar style = {{backgroundColor : "#3F729B"}}>
 					<IconButton
 						color="inherit"
 						aria-label="open drawer"
@@ -163,7 +163,7 @@ export default function SideDrawer(props) {
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" noWrap>
+					<Typography variant="h6" noWrap >
 						Expense Manager
 					</Typography>
 				</Toolbar>

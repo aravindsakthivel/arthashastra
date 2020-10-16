@@ -9,6 +9,11 @@ import { faSortNumericDown } from '@fortawesome/free-solid-svg-icons'
 import { faSortNumericUpAlt } from '@fortawesome/free-solid-svg-icons'
 import { faCircle } from '@fortawesome/free-solid-svg-icons'
 import { filterTransactions, sortTransactions } from '../../Redux/action'
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,6 +43,13 @@ export default function FilterandSort() {
 
     return (
         <div className={classes.root}>
+            <SimplePaper>
+                <ButtonGroup size="large" color="primary" aria-label="large outlined primary button group">
+                    <Button onClick = {() => filterData("debit")}>Debit</Button>
+                    <Button onClick = {() => filterData("credit")}>Credit</Button>
+                    <Button onClick = {() => filterData("")}>All</Button>
+                </ButtonGroup>
+            </SimplePaper>
             <SimplePaper>
                 <ButtonGroup size="large" color="primary" aria-label="large outlined primary button group">
                     <Button onClick = {() => filterData("debit")}>Debit</Button>
