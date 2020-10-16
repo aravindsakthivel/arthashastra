@@ -80,7 +80,6 @@ export default function LineChart(){
                         <Chart data={creditChart} height = "180">
                             <LineSeries valueField="value" argumentField="argument" color = '#078282FF'/>
                             <Title position="top" text = "Credit" />
-                            <Animation />
                         </Chart>
                     </div>
                 </Paper>
@@ -90,7 +89,6 @@ export default function LineChart(){
                         <Chart data={debitChart} height = "180">  
                             <LineSeries valueField="value" argumentField="argument" color = '#BA0020FF'/>
                             <Title position="bottom" text = "Debit" />
-                            <Animation />
                         </Chart>
                     </div>
                 </Paper>
