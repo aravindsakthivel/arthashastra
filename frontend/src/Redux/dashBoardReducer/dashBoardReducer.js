@@ -17,7 +17,9 @@ const initState = {
     getTopTransactionIsError:false,
     topTransactions:[],
     message:"",
-    success:false
+    success:false,
+    creditData:0,
+    debitData:0
 }
 
 
@@ -58,7 +60,9 @@ export default (state = initState, { type, payload }) => {
                 ...state,
                 topTransactions: payload.data.current,
                 getTopTransactionIsLoading: false,
-                getTopTransactionIsError:false
+                getTopTransactionIsError:false,
+                creditData:payload.data.credit,
+                debitData:payload.data.debit
             };
 
         case GET_TOP_TRANSACTIONS_FAILURE:
@@ -84,7 +88,9 @@ export default (state = initState, { type, payload }) => {
                 getTopTransactionIsError:false,
                 topTransactions:[],
                 message:"",
-                success:false
+                success:false,
+                creditData:0,
+                debitData:0
             }
         default:
             return state;
