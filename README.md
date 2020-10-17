@@ -1,4 +1,4 @@
-# Chitrakala - Ticket Booking React app
+# Arthashastra - Expense Manager app
 
 > A MERN based expense manager app that lets you add your expense and earnings. Based on the saved data, it gives an overall analyses.
 
