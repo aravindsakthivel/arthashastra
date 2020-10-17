@@ -5,7 +5,8 @@ import {
     Chart,
     LineSeries,
     Title,
-    Legend
+    ArgumentAxis,
+    ValueAxis,
 } from '@devexpress/dx-react-chart-material-ui';
 import { makeStyles } from "@material-ui/core/styles";
 import {getTransactionProcess} from '../../Redux/action'
@@ -23,26 +24,6 @@ const useStyles = makeStyles(() => ({
         }
     }
 }))
-
-
-// const Root = props => (
-//     <Legend.Root
-//         {...props}
-//         className="m-auto flex-column"
-//     />
-// );
-// const Item = props => (
-//     <Legend.Item
-//         {...props}
-//         className="flex-column"
-//     />
-// );
-// const Label = props => (
-//     <Legend.Label
-//         {...props}
-//         className="pt-2"
-//     />
-// );
 
 
 
@@ -65,12 +46,17 @@ export default function LineChart(){
 		dispatch(getTransactionProcess(data))
 	},[])
 
+
+    console.log(creditChart)
+
     if(renderChart){
         return (
             <>
                 <Paper className = {classes.margin}>
                     <div style = {{color:"#078282FF" }}>
                         <Chart data={creditChart} height = "180">
+                            <ArgumentAxis />
+                            <ValueAxis/>
                             <LineSeries valueField="value" argumentField="argument" color = '#078282FF'/>
                             <Title position="top" text = "Credit" />
                         </Chart>
@@ -79,7 +65,9 @@ export default function LineChart(){
                 
                 <Paper className = {classes.margin}>
                     <div style = {{color: "#BA0020FF"}}>
-                        <Chart data={debitChart} height = "180">  
+                        <Chart data={debitChart} height = "180"> 
+                            <ArgumentAxis /> 
+                            <ValueAxis interval = {10000} />
                             <LineSeries valueField="value" argumentField="argument" color = '#BA0020FF'/>
                             <Title position="bottom" text = "Debit" />
                         </Chart>

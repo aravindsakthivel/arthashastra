@@ -59,6 +59,9 @@ const useStyles = makeStyles({
 	container: {
 		maxHeight: 440,
 	},
+	editColor:{
+		background:"#3F729B"
+	}
 });
 
 export default function Transactions() {
@@ -212,7 +215,7 @@ export default function Transactions() {
 								if(column.id === "edit" || column.id === "delete"){
 									return (
 										<TableCell key={column.id} align={column.align}>
-											<Button 
+											<Button className = {column.id === "edit" ? classes.editColor : ""}
 												variant="contained" 
 												color={column.id === "edit" ? "primary" : "secondary"} 
 												onClick={() => column.id === "edit" ? editVals(row) : deleteVals(id)}>{column.id.toUpperCase()}</Button>
