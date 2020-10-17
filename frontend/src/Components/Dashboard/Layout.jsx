@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	transactionsPaper:{
 		borderRadius:20,
-		height:430
+		height:440
 	},
 	modal: {
         display: 'flex',

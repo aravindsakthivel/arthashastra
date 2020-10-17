@@ -5,6 +5,7 @@ import {
     Typography
 } from "@material-ui/core";
 import React from "react";
+import { noAuto } from "@fortawesome/fontawesome-svg-core";
 
 
 const useStyles = makeStyles(() => ({
@@ -12,8 +13,9 @@ const useStyles = makeStyles(() => ({
         textTransform: "uppercase"
     },
     chartSize:{
-        height:430,
+        height:440,
         borderRadius:20,
+        overflow:"auto",
     }
 }));
 

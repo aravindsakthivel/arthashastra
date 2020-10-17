@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
         marginTop:10,
         '& h3': {
             fontSize: "12px",
-            fontWeight:600
+            fontWeight:600,
         }
     }
 }))
@@ -54,7 +54,7 @@ export default function LineChart(){
             <>
                 <Paper className = {classes.margin}>
                     <div style = {{color:"#078282FF" }}>
-                        <Chart data={creditChart} height = "180">
+                        <Chart data={creditChart} height = "280">
                             <ArgumentAxis />
                             <ValueAxis/>
                             <LineSeries valueField="value" argumentField="argument" color = '#078282FF'/>
@@ -65,7 +65,7 @@ export default function LineChart(){
                 
                 <Paper className = {classes.margin}>
                     <div style = {{color: "#BA0020FF"}}>
-                        <Chart data={debitChart} height = "180"> 
+                        <Chart data={debitChart} height = "280"> 
                             <ArgumentAxis /> 
                             <ValueAxis interval = {10000} />
                             <LineSeries valueField="value" argumentField="argument" color = '#BA0020FF'/>
