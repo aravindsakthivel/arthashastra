@@ -1,28 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { 
 	Card, 
 	CardContent, 
 	Typography, 
-	Divider, 
 	Grid, 
-	Modal, 
-	Backdrop, 
-	Fade, 
-	Input, 
 	Box,
 	Dialog,
-	DialogActions,
 	DialogContent,
-	DialogContentText,
-	DialogTitle,
-	Button, 
-	TextField, 
-	FormControl, 
-	Select, 
-	MenuItem, 
-	InputLabel} from "@material-ui/core";
+	DialogTitle} from "@material-ui/core";
 import SideDrawer from '../SideDrawer'
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import TrendingDownIcon from '@material-ui/icons/TrendingDown';
@@ -30,7 +17,6 @@ import { CardBar } from "./ChartCard";
 import LineChart from './LineChart'
 import TransactionTimeline from './TransactionsTimeline'
 import PieChart from "./PieChart"
-import ModalForm from './Modal'
 import TransactionForm from './TransactionForm'
 
 const incomeFormData = {
@@ -128,7 +114,6 @@ export default function DashBoardLayout() {
 	const classes = useStyles();
 	const [openIncome, setOpenIncome] = React.useState(false);
 	const [openExpense, setOpenExpense] = React.useState(false);
-	const dispatch = useDispatch()
     const userData = useSelector((state) => state.authData.userData)
 
 

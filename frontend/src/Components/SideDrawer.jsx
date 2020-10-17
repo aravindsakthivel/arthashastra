@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -115,7 +115,6 @@ const useStyles = makeStyles((theme) => ({
 let sideBarList = [
 	{name:"Dashboard", icon: <DashboardIcon />}, 
 	{name:"Ledger", icon: <BookIcon />}, 
-	{name:"Profile", icon: <AccountBoxIcon />},
 	{name:"Logout", icon: <ExitToAppIcon />}
 ]
 
@@ -191,7 +190,7 @@ export default function SideDrawer(props) {
 					{sideBarList.map(({name, icon}, index) => (
 						<React.Fragment key = {uuidv4()}>
 							{
-								index == 3 ? (
+								index === 3 ? (
 									<ListItem button key={name} type = "button" onClick = {logout}>
 										<ListItemIcon>{icon}</ListItemIcon>
 										<ListItemText primary={name} />

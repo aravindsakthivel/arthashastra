@@ -22,7 +22,6 @@ const initState = {
 
 
 export default (state = initState, { type, payload }) => {
-    console.log(type, payload);
     switch (type) {
         case REGISTER_USERS_REQUEST:
             return {

@@ -10,7 +10,8 @@ const userSchema = new Schema({
     id: {
         type: String,
         min: 1,
-        default: uuid.v4()
+        default: uuid.v4(),
+        unique: true
     },
 
     user_id: {

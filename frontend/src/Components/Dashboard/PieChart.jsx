@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import Paper from '@material-ui/core/Paper';
 import {
     Chart,
     PieSeries,
-    Title,
     Legend,
 } from '@devexpress/dx-react-chart-material-ui';
 import { Animation } from '@devexpress/dx-react-chart';
@@ -39,7 +38,7 @@ export default function PieChart(){
         { type : "Debit" , money : debit, },
         { type : "Credit" , money : credit, },
     ];
-    console.log(credit, debit)
+    
     return (
         <Paper>
             <Chart data={data} height = "370" >

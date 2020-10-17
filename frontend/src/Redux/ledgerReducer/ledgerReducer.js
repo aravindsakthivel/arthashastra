@@ -4,6 +4,12 @@ import {
     GET_TRANSACTIONS_FAILURE,
     FILTER_TRANSACTIONS_TYPE,
     FILTER_TRANSACTIONS_CATEGORY,
+    DELETE_TRANSACTION_REQUEST,
+    DELETE_TRANSACTION_SUCCESS,
+    DELETE_TRANSACTION_FAILURE,
+    EDIT_TRANSACTION_REQUEST,
+    EDIT_TRANSACTION_SUCCESS,
+    EDIT_TRANSACTION_FAILURE,
     SORT_TRANSACTIONS,
     LOGOUT_USER } from "../actionTypes" 
 
@@ -26,12 +32,11 @@ const initState = {
 
 
 export default (state = initState, { type, payload }) => {
-    console.log(type, payload);
     switch (type) {
         case GET_TRANSACTIONS_REQUEST:
             return {
                 ...state,
-                getTransactionIsLoading: payload,
+                getTransactionIsLoading: true,
                 getTransactionIsError: false
             };
 
@@ -60,10 +65,55 @@ export default (state = initState, { type, payload }) => {
         case GET_TRANSACTIONS_FAILURE:
             return {
                 ...state,
-                getTransactionIsError: payload.error,
+                getTransactionIsError: true,
                 message:payload.message,
                 getTransactionLoading: false,
             };
+
+        case DELETE_TRANSACTION_REQUEST:
+            return{
+                ...state,
+                filter_type:payload,
+                getTransactionIsLoading: true,
+                getTransactionIsError: false
+            }
+
+        case DELETE_TRANSACTION_SUCCESS:
+            return {
+                ...state,
+                transactions: state.transactions.filter(x => x.id !== payload)
+            }
+
+        case DELETE_TRANSACTION_FAILURE:
+            return{
+                ...state,
+                getTransactionIsError: true,
+                message:payload.message,
+                getTransactionLoading: false,
+            }
+
+        case EDIT_TRANSACTION_REQUEST:
+            return{
+                ...state,
+                filter_type:payload,
+                getTransactionIsLoading: true,
+                getTransactionIsError: false
+            }
+
+        case EDIT_TRANSACTION_SUCCESS:
+            let editObj = state.transactions.map(x => x.id === payload.id ? {...x, amount: payload.amount} : x)
+            return {
+                ...state,
+                transactions: editObj
+            }
+
+        case EDIT_TRANSACTION_FAILURE:
+            return{
+                ...state,
+                getTransactionIsError: true,
+                message:payload.message,
+                getTransactionLoading: false,
+            }
 
         case FILTER_TRANSACTIONS_TYPE:
             return{

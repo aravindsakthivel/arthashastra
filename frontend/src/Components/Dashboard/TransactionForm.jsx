@@ -1,19 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {addTransactionProcess, removeMessage} from '../../Redux/action'
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import {NativeSelect, 
-	TextField, 
+import {TextField, 
 	Select,
 	DialogActions,
-	DialogContent,
-	DialogContentText,
-	DialogTitle} from '@material-ui/core';
-import NumberFormat from 'react-number-format';
-import InputBase from '@material-ui/core/InputBase';
+	DialogContentText} from '@material-ui/core';
 import Button from '@material-ui/core/Button'
 import Alert from '@material-ui/lab/Alert'
 import { v4 as uuidv4 } from 'uuid'
@@ -49,13 +44,11 @@ export default function TransactionForm(props) {
 	const message = useSelector((state) => state.dashBoardData.message)
 
 
-	console.log(formValue)
 	const handleChange = (e) => {
 		setValue({...formValue, [e.target.name]: e.target.value});
 		
 	};
 
-	console.log(message)
 
 	const handleSubmit = async(e) => {
 		e.preventDefault()

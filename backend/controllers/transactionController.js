@@ -4,6 +4,7 @@ const { transactAddValidation,
         transactGetValidation} = require("../helpers/validations/transactionValidation");
 const {paginatedResults} = require('../helpers/pagination/pagination')
 const type = require('../enums/type')
+const {v4: uuid} = require('uuid')
 
 const Transaction = require('../models/Transactions');
 const User = require("../models/Users");
@@ -54,7 +55,6 @@ const transactGet = async (req, res) => {
 }
 
 const transactAdd = async (req, res) => {
-    
     const {error} = transactAddValidation(req.body)
     if(error){
         return res.status(400).json({error: true, message: error.details[0].message})
@@ -64,9 +64,7 @@ const transactAdd = async (req, res) => {
     if(!user){
         return res.status(400).json({error: true, message: "User does not exist"})
     }
-
-    const transaction = new Transaction({...req.body})
-
+    const transaction = new Transaction({...req.body, id: uuid()})
     try{
         await transaction.save()
         res.status(200).json({error: false, message: "Transaction Added."})
