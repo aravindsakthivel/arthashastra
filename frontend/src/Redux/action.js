@@ -15,12 +15,12 @@ import {
     GET_TOP_TRANSACTIONS_REQUEST,
     GET_TOP_TRANSACTIONS_SUCCESS,
     GET_TOP_TRANSACTIONS_FAILURE,
-    UPDATE_TRANSACTION_REQUEST,
-    UPDATE_TRANSACTION_SUCCESS,
-    UPDATE_TRANSACTION_FAILURE,
-    DELETE_TRANSACTIONS_REQUEST,
-    DELETE_TRANSACTIONS_SUCCESS,
-    DELETE_TRANSACTIONS_FAILURE,
+    EDIT_TRANSACTION_REQUEST,
+    EDIT_TRANSACTION_SUCCESS,
+    EDIT_TRANSACTION_FAILURE,
+    DELETE_TRANSACTION_REQUEST,
+    DELETE_TRANSACTION_SUCCESS,
+    DELETE_TRANSACTION_FAILURE,
     FILTER_TRANSACTIONS_TYPE,
     FILTER_TRANSACTIONS_CATEGORY,
     SORT_TRANSACTIONS,
@@ -60,6 +60,36 @@ export const loginUserFailure = payload => ({
 
 export const logoutUser = () => ({
     type: LOGOUT_USER
+})
+
+export const deleteTransactionRequest = payload => ({
+    type : DELETE_TRANSACTION_REQUEST,
+    payload
+})
+
+export const deleteTransactionSuccess = payload => ({
+    type : DELETE_TRANSACTION_SUCCESS,
+    payload
+})
+
+export const deleteTransactionFailure = payload => ({
+    type : DELETE_TRANSACTION_FAILURE,
+    payload
+})
+
+export const editTransactionRequest = payload => ({
+    type : EDIT_TRANSACTION_REQUEST,
+    payload
+})
+
+export const editTransactionSuccess = payload => ({
+    type : EDIT_TRANSACTION_SUCCESS,
+    payload
+})
+
+export const editTransactionFailure = payload => ({
+    type : EDIT_TRANSACTION_FAILURE,
+    payload
 })
 
 export const addTransactionRequest = payload => ({
@@ -147,7 +177,6 @@ export const registerUserProcess = (payload) => dispatch => {
         "username" : payload.username,
         "password" : payload.password 
     }
-    console.log(payload)
     const config = {
         method: 'post',
         url: 'http://localhost:8080/api/auth/register',
@@ -164,7 +193,6 @@ export const registerUserProcess = (payload) => dispatch => {
 }
 
 export const getTopTransactionProcess = (payload) => dispatch => {
-    console.log(payload)
     const config = {
         method: 'post',
         url: 'http://localhost:8080/api/transact?page=1&limit=5',
@@ -201,7 +229,6 @@ export const addTransactionProcess = (payload) => dispatch => {
 
 
 export const getTransactionProcess = (payload) => dispatch => {
-    console.log(payload)
     const config = {
         method: 'post',
         url: `http://localhost:8080/api/transact?page=${payload.page + 1}&limit=${payload.limit}`,
@@ -214,4 +241,34 @@ export const getTransactionProcess = (payload) => dispatch => {
     return axios(config)
         .then(res => dispatch(getTransactionSuccess(res.data)))
         .catch(err => dispatch(getTransactionFailure(err)))
+}
+
+
+export const deleteTransaction = (payload) => dispatch => {
+    const config = {
+        method: 'delete',
+        url: `http://localhost:8080/api/transact/delete`,
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        data : {"id" : payload}
+    }
+    return axios(config)
+        .then(res => dispatch(deleteTransactionSuccess(payload)))
+        .catch(err => dispatch(deleteTransactionFailure(err)))
+}
+
+
+export const editTransaction = (payload) => dispatch => {
+    const config = {
+        method: 'patch',
+        url: `http://localhost:8080/api/transact/update`,
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        data : payload
+    }
+    return axios(config)
+        .then(res => dispatch(editTransactionSuccess(payload)))
+        .catch(err => dispatch(editTransactionFailure(err)))
 }

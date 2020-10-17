@@ -1,8 +1,6 @@
-import React, { useState} from "react";
-import {Redirect} from "react-router-dom";
+import React from "react";
 import { Link} from "react-router-dom";
-import logo from '../Resources/logo.png'
-import {HomeIcon, CustomNavBar} from './StyledComponents'
+import { CustomNavBar} from './StyledComponents'
 import { v4 as uuidv4 } from 'uuid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChartLine } from '@fortawesome/free-solid-svg-icons'

@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch, Redirect} from "react-router-dom";
 import Dashboard from "./DashBoard"
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import LedgerPage from './Ledger'
 import ProfilePage from './ProfilePage'
 

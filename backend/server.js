@@ -25,7 +25,7 @@ mongoose.connect(process.env.MONGO_URI, {
         console.log("Error: " + err)
     }
     else{
-        console.log("")
+        console.log("") 
     }
 })
 

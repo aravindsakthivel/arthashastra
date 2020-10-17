@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const {v4: uuid} = require('uuid')
 
 const {loginValidation, regValidation} = require("../helpers/validations/authValidation");
 
@@ -29,7 +30,8 @@ const registerUser = async (req, res) => {
         email: req.body.email,
         password: hashedPassword,
         mob: req.body.mob,
-        gender: req.body.gender
+        gender: req.body.gender,
+        id: uuid()
     })
 
     try{

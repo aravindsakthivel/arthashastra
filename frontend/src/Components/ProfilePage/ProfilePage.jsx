@@ -1,16 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory , Redirect} from "react-router-dom";
+import React from "react";
+import { useSelector } from "react-redux";
 import SideDrawer from '../SideDrawer'
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
 import { Box, Grid } from "@material-ui/core";
 
 
@@ -42,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
 
 const ProfilePageLayout = () => {
     const classes = useStyles();
-    const theme = useTheme();
     const state = useSelector(state => state)
     let user = state.authData.userData
     let keys = Object.keys(user)

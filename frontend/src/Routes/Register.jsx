@@ -5,7 +5,6 @@ import { Link} from "react-router-dom";
 import {Redirect} from "react-router-dom";
 import {FormWrapper, Mlabel} from "../Components/StyledComponents"
 import { v4 as uuidv4 } from 'uuid'
-import logo from '../Resources/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChartLine } from '@fortawesome/free-solid-svg-icons'
 import Navbar from '../Components/Navbar'

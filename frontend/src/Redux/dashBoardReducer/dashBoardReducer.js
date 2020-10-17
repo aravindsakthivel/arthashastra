@@ -24,7 +24,6 @@ const initState = {
 
 
 export default (state = initState, { type, payload }) => {
-    console.log(type, payload);
     switch (type) {
         case ADD_TRANSACTION_REQUEST:
             return {

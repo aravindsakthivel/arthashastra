@@ -23,7 +23,6 @@ export const store = createStore(
     composeEnhancers(applyMiddleware(thunk))
 );
 
-// console.log(store.getState());
 
 store.subscribe(throttle(() => saveData("isAuth", store.getState().authData.isAuth), 1000))
 store.subscribe(throttle(() => saveData("userId", store.getState().authData.userId), 1000))
