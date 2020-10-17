@@ -32,10 +32,10 @@ const transactGet = async (req, res) => {
     let results = null
     try{
         results = await paginatedResults(Transaction, req, filters, {timestamp : -1})
-        let credit = await Transaction.aggregate( [{ $match: {type: type.CREDIT } },
+        let credit = await Transaction.aggregate( [{ $match: {type: type.CREDIT, user_id: filters.user_id } },
                                                     { $group: {_id: null, amount: {$sum: "$amount"}} }
                                                 ])
-        let debit = await Transaction.aggregate( [{ $match: {type: type.DEBIT} },
+        let debit = await Transaction.aggregate( [{ $match: {type: type.DEBIT, user_id: filters.user_id } },
                                                     { $group: {_id: null, amount: {$sum: "$amount"}} }
                                                 ])
         results.data.credit = credit[0].amount

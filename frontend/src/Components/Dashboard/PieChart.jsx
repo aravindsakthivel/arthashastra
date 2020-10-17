@@ -35,8 +35,8 @@ export default function PieChart(){
 
 
     const data = [
-        { type : "Debit" , money : debit, },
-        { type : "Credit" , money : credit, },
+        { type : `Debit: ₹${debit}` , money : debit, },
+        { type : `Credit: ₹${credit}` , money : credit, },
     ];
     
     return (
