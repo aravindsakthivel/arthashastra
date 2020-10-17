@@ -190,7 +190,7 @@ export default function SideDrawer(props) {
 					{sideBarList.map(({name, icon}, index) => (
 						<React.Fragment key = {uuidv4()}>
 							{
-								index === 3 ? (
+								index === 2 ? (
 									<ListItem button key={name} type = "button" onClick = {logout}>
 										<ListItemIcon>{icon}</ListItemIcon>
 										<ListItemText primary={name} />
