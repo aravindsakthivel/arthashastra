@@ -44,7 +44,7 @@ export default function LineChart(){
         }
         
 		dispatch(getTransactionProcess(data))
-	},[])
+	},[dispatch,userId])
 
 
     console.log(creditChart)

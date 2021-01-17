@@ -186,7 +186,7 @@ export default function Transactions() {
 			"userId" : userId
 		}
 		dispatch(getTransactionProcess(data))
-	},[])
+	},[dispatch,statePage,rowsPerPage,userId])
 
 	return (
 		<Paper className={classes.root}>

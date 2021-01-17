@@ -36,7 +36,7 @@ export default function CustomizedTimeline() {
 			"user_id" : userId
 		}
 		dispatch(getTopTransactionProcess(data))
-	}, [])
+	}, [userId, dispatch])
 
 	return (
 		<Timeline align="alternate">

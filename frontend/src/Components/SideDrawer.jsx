@@ -18,7 +18,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import BookIcon from '@material-ui/icons/Book';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { logoutUser } from '../Redux/action';
 import { v4 as uuidv4 } from 'uuid'

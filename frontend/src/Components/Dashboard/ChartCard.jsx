@@ -5,7 +5,6 @@ import {
     Typography
 } from "@material-ui/core";
 import React from "react";
-import { noAuto } from "@fortawesome/fontawesome-svg-core";
 
 
 const useStyles = makeStyles(() => ({
