@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link} from "react-router-dom";
 import { loginUserProcess } from "../Redux/action";
 import {Redirect} from "react-router-dom";
-import {FormWrapper, CenterContainer} from "../Components/StyledComponents"
+import {FormWrapper} from "../Components/StyledComponents"
 import { v4 as uuidv4 } from 'uuid'
-import logo from '../Resources/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChartLine } from '@fortawesome/free-solid-svg-icons'
 import Navbar from '../Components/Navbar'
