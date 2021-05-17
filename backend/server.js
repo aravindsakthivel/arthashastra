@@ -16,9 +16,7 @@ dotenv.config();
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 // Anything that doesn't match the above, send back index.html
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "../frontend/build/index.html"));
-});
+
 mongoose.connect(
   process.env.MONGO_URI,
   {
@@ -60,6 +58,10 @@ db.once("open", async () => {
 app.use("/api/auth", authRouter);
 
 app.use("/api/transact", transactRouter);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "../frontend/build/index.html"));
+});
 
 const port = process.env.PORT || 5000;
 
