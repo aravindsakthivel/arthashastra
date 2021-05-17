@@ -1,60 +1,68 @@
-const express = require("express")
-const dotenv = require('dotenv')
-const mongoose = require('mongoose')
-const cors = require('cors')
+const express = require("express");
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const path = require("path");
+const User = require("./models/Users");
+const Transaction = require("./models/Transactions");
+const userData = require("./data/users");
+const transactionData = require("./data/transactions");
+const authRouter = require("./routes/authRouter");
+const transactRouter = require("./routes/transactRouter");
 
-const User = require('./models/Users')
-const Transaction = require('./models/Transactions')
-const userData = require('./data/users')
-const transactionData = require('./data/transactions')
-const authRouter = require('./routes/authRouter')
-const transactRouter = require('./routes/transactRouter')
+const app = express();
 
-
-const app = express()
-
-dotenv.config()
-mongoose.connect(process.env.MONGO_URI, {
+dotenv.config();
+// // Serve static files from the React frontend app
+// app.use(express.static(path.join(__dirname, "../frontend/build")));
+// // Anything that doesn't match the above, send back index.html
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname + "../frontend/build/index.html"));
+// });
+mongoose.connect(
+  process.env.MONGO_URI,
+  {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
-    useFindAndModify: false 
-}, (err) => {
-    if(err){
-        console.log("Error: " + err)
+    useFindAndModify: false,
+  },
+  (err) => {
+    if (err) {
+      console.log("Error: " + err);
+    } else {
+      console.log("Database is connected");
     }
-    else{
-        console.log("Database is connected") 
-    }
-})
+  }
+);
 
-app.use(cors())
-app.use(express.json()) 
+app.use(cors());
+app.use(express.json());
 
 const db = mongoose.connection;
-db.on('error', console.log.bind(console, 'connection error: '))
+db.on("error", console.log.bind(console, "connection error: "));
 db.once("open", async () => {
-    if( (await User.countDocuments().exec()) > 0) return
+  if ((await User.countDocuments().exec()) > 0) return;
 
-    User.insertMany(userData)
-        .then(() => console.log("Users added successfully"))
-        .catch((err) => console.log("Error: " + err))
-})
+  User.insertMany(userData)
+    .then(() => console.log("Users added successfully"))
+    .catch((err) => console.log("Error: " + err));
+});
 
 db.once("open", async () => {
-    if( (await Transaction.countDocuments().exec()) > 0) return
+  if ((await Transaction.countDocuments().exec()) > 0) return;
 
-    Transaction.insertMany(transactionData)
-        .then(() => console.log("Transactions added successfully"))
-        .catch((err) => console.log("Error: " + err))
-})
+  Transaction.insertMany(transactionData)
+    .then(() => console.log("Transactions added successfully"))
+    .catch((err) => console.log("Error: " + err));
+});
 
-app.use("/api/auth", authRouter)
+app.use("/api/auth", authRouter);
 
-app.use("/api/transact", transactRouter)
+app.use("/api/transact", transactRouter);
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
-    console.log(`server is up and running on port: ${port}`)
-})
+  console.log(`server is up and running on port: ${port}`);
+});
