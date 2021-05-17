@@ -47,7 +47,6 @@ export default function LineChart(){
 	},[dispatch,userId])
 
 
-    console.log(creditChart)
 
     if(renderChart){
         return (

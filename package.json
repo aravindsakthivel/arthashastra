@@ -1,0 +1,36 @@
+{
+  "name": "arthashastra",
+  "version": "1.0.0",
+  "description": "> A MERN based expense manager app that lets you add your expense and earnings. Based on the saved data, it gives an overall analyses.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aravindsakthivel/arthashastra.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aravindsakthivel/arthashastra/issues"
+  },
+  "homepage": "https://github.com/aravindsakthivel/arthashastra#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "concurrently": "^6.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "joi": "^17.2.1",
+    "mongoose": "^5.10.9",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.4.13",
+    "uuid": "^8.3.1"
+  }
+}

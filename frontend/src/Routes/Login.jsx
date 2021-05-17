@@ -36,7 +36,6 @@ const Login = () => {
         dispatch(loginUserProcess(userInfo))
     }
 
-    console.log(isAuth, loginData.username, loginIsError, loginIsLoading, message)
     if(!isAuth){
         return (
             <>

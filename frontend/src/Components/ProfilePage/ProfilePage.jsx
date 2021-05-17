@@ -40,7 +40,6 @@ const ProfilePageLayout = () => {
     const state = useSelector(state => state)
     let user = state.authData.userData
     let keys = Object.keys(user)
-    console.log(user, keys)
 
     return(
         <SideDrawer>

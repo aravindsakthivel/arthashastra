@@ -24,7 +24,7 @@ mongoose.connect(process.env.MONGO_URI, {
         console.log("Error: " + err)
     }
     else{
-        console.log("") 
+        console.log("Database is connected") 
     }
 })
 
@@ -44,7 +44,6 @@ db.once("open", async () => {
 db.once("open", async () => {
     if( (await Transaction.countDocuments().exec()) > 0) return
 
-    console.log()
     Transaction.insertMany(transactionData)
         .then(() => console.log("Transactions added successfully"))
         .catch((err) => console.log("Error: " + err))
