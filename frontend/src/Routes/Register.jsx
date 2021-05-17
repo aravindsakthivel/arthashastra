@@ -43,7 +43,6 @@ const Register = () => {
         dispatch(registerUserProcess(userInfo))
     }
 
-    console.log(isAuth, registerData.username, registerData.gender)
     if(!isAuth){
         return (
             <>

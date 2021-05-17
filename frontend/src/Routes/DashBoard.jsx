@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import DashBoardLayout from '../Components/Dashboard/Layout'
 
 // const stateLine = {
@@ -35,8 +34,6 @@ import DashBoardLayout from '../Components/Dashboard/Layout'
 // }
 
 const Dashboard = () => {
-    const isAuth = useSelector((state) => state.authData.isAuth) 
-    console.log(isAuth)
     return(
         <DashBoardLayout />
     )

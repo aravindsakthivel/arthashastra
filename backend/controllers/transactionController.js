@@ -16,7 +16,7 @@ const transactGet = async (req, res) => {
     }
 
     const filters = {
-        user_id : req.body.user_id
+        user_id: req.body.user_id
     }
     
     let filter_by_type = req.query.type
@@ -37,11 +37,12 @@ const transactGet = async (req, res) => {
                                                 ])
         let debit = await Transaction.aggregate( [{ $match: {type: type.DEBIT, user_id: filters.user_id } },
                                                     { $group: {_id: null, amount: {$sum: "$amount"}} }
-                                                ])
-        results.data.credit = credit[0].amount
-        results.data.debit = debit[0].amount
+        ])
+        results.data.credit =
+            credit.length > 0 ? credit[0].amount : 0;
+        results.data.debit = debit.length > 0 ? debit[0].amount : 0
     }
-    catch(err){
+    catch (err) {
         res.status(400).json({error: true, message: "Something went wrong."})
         return
     }
