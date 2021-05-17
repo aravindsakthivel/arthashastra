@@ -160,7 +160,7 @@ export const sortTransactions = payload => ({
 export const loginUserProcess = (payload) => dispatch => {
     const config = {
         method: 'post',
-        url: 'http://localhost:8080/api/auth/login',
+        url: 'https://arthashastra.herokuapp.com/api/auth/login',
         headers: { 
             'Content-Type': 'application/json'
         },
@@ -180,7 +180,7 @@ export const registerUserProcess = (payload) => dispatch => {
     }
     const config = {
         method: 'post',
-        url: 'http://localhost:8080/api/auth/register',
+        url: 'https://arthashastra.herokuapp.com/api/auth/register',
         headers: { 
             'Content-Type': 'application/json'
         },
@@ -196,7 +196,7 @@ export const registerUserProcess = (payload) => dispatch => {
 export const getTopTransactionProcess = (payload) => dispatch => {
     const config = {
         method: 'post',
-        url: 'http://localhost:8080/api/transact?page=1&limit=5',
+        url: 'https://arthashastra.herokuapp.com/api/transact?page=1&limit=5',
         headers: { 
             'Content-Type': 'application/json'
         },
@@ -215,7 +215,7 @@ export const addTransactionProcess = (payload) => dispatch => {
     }
     const config = {
         method: 'post',
-        url: 'http://localhost:8080/api/transact/add',
+        url: 'https://arthashastra.herokuapp.com/api/transact/add',
         headers: { 
             'Content-Type': 'application/json'
         },
@@ -232,7 +232,7 @@ export const addTransactionProcess = (payload) => dispatch => {
 export const getTransactionProcess = (payload) => dispatch => {
     const config = {
         method: 'post',
-        url: `http://localhost:8080/api/transact?page=${payload.page + 1}&limit=${payload.limit}`,
+        url: `https://arthashastra.herokuapp.com/api/transact?page=${payload.page + 1}&limit=${payload.limit}`,
         headers: { 
             'Content-Type': 'application/json'
         },
@@ -248,7 +248,7 @@ export const getTransactionProcess = (payload) => dispatch => {
 export const deleteTransaction = (payload) => dispatch => {
     const config = {
         method: 'delete',
-        url: `http://localhost:8080/api/transact/delete`,
+        url: `https://arthashastra.herokuapp.com/api/transact/delete`,
         headers: { 
             'Content-Type': 'application/json'
         },
@@ -263,7 +263,7 @@ export const deleteTransaction = (payload) => dispatch => {
 export const editTransaction = (payload) => dispatch => {
     const config = {
         method: 'patch',
-        url: `http://localhost:8080/api/transact/update`,
+        url: `https://arthashastra.herokuapp.com/api/transact/update`,
         headers: { 
             'Content-Type': 'application/json'
         },

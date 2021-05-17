@@ -13,9 +13,7 @@ const transactRouter = require("./routes/transactRouter");
 const app = express();
 
 dotenv.config();
-// Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, "../frontend/build")));
-// Anything that doesn't match the above, send back index.html
+
 
 mongoose.connect(
   process.env.MONGO_URI,
@@ -54,6 +52,8 @@ db.once("open", async () => {
     .then(() => console.log("Transactions added successfully"))
     .catch((err) => console.log("Error: " + err));
 });
+
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 app.use("/api/auth", authRouter);
 
