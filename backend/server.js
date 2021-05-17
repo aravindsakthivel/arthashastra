@@ -57,10 +57,10 @@ app.use("/api/auth", authRouter);
 app.use("/api/transact", transactRouter);
 
 // Serve any static files
-app.use(express.static(path.join(__dirname, "../frontend/build")));
+app.use(express.static(path.join("/app/frontend", "/build")));
 // Handle React routing, return all requests to React app
 app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname + "../frontend/build/index.html"));
+  res.sendFile(path.join("/app/frontend" + "/build/index.html"));
 });
 
 const port = process.env.PORT || 5000;
